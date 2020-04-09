@@ -1,0 +1,13 @@
+.tabEmployees{ 
+    padding: 30px;
+    border-radius: 10px;  
+    background-color: #dddddd;
+    .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;  
+    } 
+    .searchBLeft{
+        width: 85%;
+    }
+}
