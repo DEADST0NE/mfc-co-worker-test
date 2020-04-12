@@ -1,31 +1,31 @@
 import axios from '../../api';
 
 import {
-    JOB_POSITION_HISTORY_REQUEST,
-    JOB_POSITION_HISTORY_SUCCESS,
-    JOB_POSITION_HISTORY_ERROR,
+    JOB_POSITION_REQUEST,
+    JOB_POSITION_SUCCESS,
+    JOB_POSITION_ERROR,
 } from '../constActions';
 
 // Получение инструкций для фильтров
-const getJobPositionHistoryRequested = () => ({
-    type: JOB_POSITION_HISTORY_REQUEST
+const getJobPositionRequested = () => ({
+    type: JOB_POSITION_REQUEST
 });
-const getJobPositionHistorySuccess = (item) => ({
-    type: JOB_POSITION_HISTORY_SUCCESS,
+const getJobPositionSuccess = (item) => ({
+    type: JOB_POSITION_SUCCESS,
     payload: item
 });
-const getJobPositionHistoryError = (error) => ({
-    type: JOB_POSITION_HISTORY_ERROR,
+const getJobPositionError = (error) => ({
+    type: JOB_POSITION_ERROR,
     payload: error
 });
 
-const getJobPositionHistoryRequest = async (id) => {
-    return await axios.get(`PersonalArea/${id}/jobPositionHistory`)
+const getJobPositionRequest = async (id) => {
+    return await axios.get(`PersonalArea/${id}/jobPosition`)
     .then(response => response.data);
 };
-export const getJobPositionHistory = (id) => (dispatch) => {
-    dispatch(getJobPositionHistoryRequested());
-    getJobPositionHistoryRequest(id)
-        .then((data) => dispatch(getJobPositionHistorySuccess(data)))
-        .catch((err) => dispatch(getJobPositionHistoryError(err)));
+export const getJobPosition = (id) => (dispatch) => {
+    dispatch(getJobPositionRequested());
+    getJobPositionRequest(id)
+        .then((data) => dispatch(getJobPositionSuccess(data)))
+        .catch((err) => dispatch(getJobPositionError(err)));
 }; 

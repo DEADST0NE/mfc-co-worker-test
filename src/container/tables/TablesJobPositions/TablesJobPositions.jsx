@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {connect} from 'react-redux'; 
 
+import Spiner from '../../../сomponent/Spiner';
+import Error from '../../../сomponent/Error';
+import { getJobPosition } from '../../../redux/jobPosition/actions';
 import s from '../GlobalTables.module.scss';
-const TablesJobPositions = () => {
+const TablesJobPositions = ({ getJobPosition, jobPosition, loading, error}) => {
+
+    useEffect(() => { 
+        getJobPosition();
+    },[getJobPosition]);
+
 const testData = [
     {
         "id": 1,
@@ -21,6 +30,13 @@ const testData = [
         "comment": "Редактирование комментария к новой тестовой должности"
     }
 ]
+    if(loading){
+        return <Spiner />
+    }
+    if(error){
+        return <Error />
+    }
+
     return (
         <table className={s.tableEmployees}> 
         <thead>
@@ -51,4 +67,14 @@ const testData = [
     )
 }
 
-export default TablesJobPositions;
+const mapStateToProps = (state) => ({
+    jobPosition: state.reducerJobPosition.jobPosition,
+    loading: state.reducerJobPosition.loading,
+    error: state.reducerJobPosition.error,
+})  
+    
+const mapDispatchToProps = { 
+    getJobPosition, 
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TablesJobPositions);

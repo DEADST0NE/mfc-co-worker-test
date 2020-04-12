@@ -1,31 +1,31 @@
 import {
-    JOB_POSITION_HISTORY_REQUEST,
-    JOB_POSITION_HISTORY_SUCCESS,
-    JOB_POSITION_HISTORY_ERROR,
+    JOB_POSITION_REQUEST,
+    JOB_POSITION_SUCCESS,
+    JOB_POSITION_ERROR,
 } from '../constActions';
 
 const initialState = {
-    jobPositionHistory: null,
+    jobPosition: null,
     loading: true,
     error: false
 } 
-const reducerJobPositionHistory = (state = initialState, action) => {
+const reducerJobPosition = (state = initialState, action) => {
     switch(action.type){
-        case JOB_POSITION_HISTORY_REQUEST:
+        case JOB_POSITION_REQUEST:
             return {
                 ...state,
                 loading: true,
                 error: false
             }
-        case JOB_POSITION_HISTORY_SUCCESS: 
+        case JOB_POSITION_SUCCESS: 
             return {
                 ...state,
-                jobPositionHistory: action.payload,
+                jobPosition: action.payload,
                 loading: false,
                 error: false
             }
 
-        case JOB_POSITION_HISTORY_ERROR: 
+        case JOB_POSITION_ERROR: 
             return {
                 ...state,
                 loading: false,
@@ -37,5 +37,5 @@ const reducerJobPositionHistory = (state = initialState, action) => {
     }
 }
 
-export default reducerJobPositionHistory;
+export default reducerJobPosition;
 

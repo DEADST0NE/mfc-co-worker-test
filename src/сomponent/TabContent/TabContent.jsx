@@ -6,29 +6,25 @@ import FormControl from 'react-bootstrap/FormControl'
 import ModalWindow from '../ModalWindow';
 import s from './TabContent.module.scss';
 
-const TabContent = ({ table, modalName='Добавить' }) => {
+const TabContent = ({ table, modalName='Добавить', modalBody, }) => {
 
-    const [showModal=false, setShowModail] = useState(0);
+    const [showModal, setShowModail] = useState(false);
 
     return ( 
         <div className={s.tabEmployees}>
             <div className={s.header}> 
                 <div className={s.searchBLeft}>
                     <InputGroup>
-                        <FormControl
-                        placeholder="Строка поиска"
-                        aria-label="Строка поиска"
-                        aria-describedby="basic-addon2"
-                        />
+                        <FormControl placeholder="Строка поиска" aria-label="Строка поиска" aria-describedby="basic-addon2" />
                         <InputGroup.Append>
-                        <Button variant="outline-secondary">Поиск</Button>
+                            <Button variant="outline-secondary">Поиск</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </div> 
                 <Button variant="primary" onClick={ ()=>setShowModail(true) }>Добавить</Button>
             </div>  
             { table }
-            <ModalWindow title={ modalName } show={showModal} onClose={ ()=>setShowModail(false) } />
+            <ModalWindow title={ modalName } body={modalBody} show={showModal} onClose={ ()=>setShowModail(false) } />
         </div>
     )
 }

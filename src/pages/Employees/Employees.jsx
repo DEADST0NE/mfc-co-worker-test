@@ -4,17 +4,19 @@ import Tab from 'react-bootstrap/Tab'
 
 import './Employess.scss';
 import TabContent from '../../сomponent/TabContent'; 
-import TablesEmployees from '../../сomponent/tables/TablesEmployees';
-import TablesBranches from '../../сomponent/tables/TablesBranches';
-import TablesJobPositions from '../../сomponent/tables/TablesJobPositions';
-import TablesSalaries from '../../сomponent/tables/TablesSalaries';
+import TablesEmployees from '../../container/tables/TablesEmployees';
+import TablesBranches from '../../container/tables/TablesBranches';
+import TablesJobPositions from '../../container/tables/TablesJobPositions';
+import TablesSalaries from '../../container/tables/TablesSalaries';
+import AddPositions from '../../сomponent/form/AddPositions';
+
 const Employees = () => {
     return (
             <div className='employees'>
                 <Tabs defaultActiveKey="employees" id="uncontrolled-tab-example">
                     <Tab eventKey="employees" title="Сотрудники">
                         <TabContent 
-                            modalName={'Добавить(Редактировать)'}
+                            modalName={'Добавить(Редактировать)'} 
                             table={<TablesEmployees />} /
                         > 
                     </Tab>
@@ -22,7 +24,10 @@ const Employees = () => {
                         <TabContent table={<TablesBranches />} /> 
                     </Tab>
                     <Tab eventKey="contact" title="Должности" >
-                        <TabContent table={<TablesJobPositions />} /> 
+                        <TabContent 
+                        modalName={'Добавить должность'}
+                        modalBody={<AddPositions />}
+                        table={<TablesJobPositions />} /> 
                     </Tab>
                     <Tab eventKey="contact2" title="Оклады" >
                         <TabContent table={<TablesSalaries />} /> 
